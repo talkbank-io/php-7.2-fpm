@@ -9,4 +9,7 @@ EXPOSE 9000/tcp
 
 # ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
 
-ENTRYPOINT ["/usr/sbin/php-fpm7.2", "-F"]
+COPY entrypoint /usr/local/bin/
+RUN chmod a+x /usr/local/bin/entrypoint
+
+ENTRYPOINT ["/usr/local/bin/entrypoint"]
